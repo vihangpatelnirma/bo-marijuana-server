@@ -1,4 +1,6 @@
 const nodeMailer = require("nodeMailer")
+const utils = require("../db/utils")
+
 let auth = {
 	user: process.env.user,
 	pass: process.env.pass,
@@ -36,13 +38,13 @@ function sendEmail(req, res) {
 
 	if (reqParams) {
 		const params = {
-			email: reqParams.email,
+			email: req.body.email,
 			title: reqParams.title,
 			body: reqParams.body,
 		}
 
 		if (!utils.nullCheck(params)) {
-			console.log("Mail could not be saved, required params are missing ", params.email)
+			console.log("Mail could not be sent, required params are missing ", params.email)
 			return
 		}
 

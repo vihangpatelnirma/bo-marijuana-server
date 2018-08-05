@@ -36,6 +36,7 @@ function saveInDb(req, res) {
 	}
 
 	if (!utils.nullCheck(rowObject)) {
+		console.log("Missing param from object : ", rowObject)
 		res.send({
 			success: false,
 		})
