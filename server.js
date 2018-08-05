@@ -4,7 +4,7 @@ const db = require("./db")
 const mailer = require("./mailer")
 const bodyParser = require("body-parser")
 
-const PORT = process.env.port || 8888
+const PORT = process.env.PORT || 8888
 
 // Configure body parser
 app.use(bodyParser.json())
