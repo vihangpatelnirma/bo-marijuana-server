@@ -1,4 +1,4 @@
-const nodeMailer = require("nodeMailer")
+const nodeMailer = require("nodemailer")
 const utils = require("../db/utils")
 
 let auth = {
