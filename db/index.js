@@ -14,8 +14,11 @@ function connectMongo() {
 	MongoClient.connect(
 		uri,
 		function(err, db) {
-			console.log(db.collection)
-			mongodb = db
+			if (!err) {
+				mongodb = db
+			} else {
+				console.log("Error occurred while connecting to the mongo client ", db)
+			}
 		}
 	)
 }
@@ -47,7 +50,7 @@ function saveInDb(req, res) {
 		.collection("contacts")
 		.insert(rowObject)
 		.then(function(response) {
-			console.log("success")
+			console.log("success full inserted record for email id : ", rowObject.email)
 			res.send({
 				success: true,
 			})
