@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 8888
 
 // Add headers
 app.use(function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", ["http://localhost:3001", "https://bo-marijuana.herokuapp.com"])
+	res.header("Access-Control-Allow-Origin", "https://bo-marijuana.herokuapp.com")
 	res.header("Access-Control-Allow-Credentials", true)
 	res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE")
 	res.header("Access-Control-Allow-Headers", "X-Requested-With,content-type")
