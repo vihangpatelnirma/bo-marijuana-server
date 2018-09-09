@@ -41,7 +41,7 @@ const verifyToken = (secret, token) =>
 		token: token,
 	})
 
-const verifyCookie = userCookie => +userCookie % 23 === 0
+const verifyCookie = userCookie => !!userCookie && +userCookie % 23 === 0
 
 const generateRandomNumber = () => {
 	var randomNumber = Math.random().toString()
