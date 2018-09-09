@@ -64,29 +64,34 @@ app.post("/session/login", (req, res) => {
 	// Verify token for that perticular user
 	const verified = verifyToken(creds[userName], token)
 
+	const randomNumber = generateRandomNumber()
 	// set cookie in response
-	res.cookie("USER", generateRandomNumber(), { maxAge: 1000 * 60 * 60 })
+	res.cookie("USER", randomNumber, { maxAge: 1000 * 60 * 60 })
 
 	res.send({
 		success: Boolean(verified),
 		message: !verified ? "Invalid credentials" : "You are logged in",
+		token: randomNumber,
 	})
 })
 
 app.post("/session/validate", (req, res) => {
-	const sessionCookie = req.cookies.USER
+	const sessionCookie = req.body.token
 
 	const isLoggedIn = verifyCookie(sessionCookie)
 	if (isLoggedIn) {
-		res.cookie("USER", generateRandomNumber(), { maxAge: 1000 * 60 * 60 })
+		const randomNumber = generateRandomNumber()
+		res.cookie("USER", randomNumber, { maxAge: 1000 * 60 * 60 })
 		res.send({
 			success: true,
+			token: randomNumber,
 		})
 	} else {
 		res.cookie("USER", "", { maxAge: 1 })
 		res.send({
 			success: false,
 			message: "You are not logged in.",
+			token: null,
 		})
 	}
 })
